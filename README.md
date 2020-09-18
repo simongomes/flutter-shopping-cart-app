@@ -1,1 +1,1 @@
-# Flutter Sho App - Learn Flutter
+# Flutter Shopping Cart App - Learn Flutter
