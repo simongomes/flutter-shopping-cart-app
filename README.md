@@ -8,6 +8,9 @@
 * State Management using Provider Package
 * DateTime Formatting
 * Form usages and submission in Flutter
+* RESTful API
+* Flutter http library
+* GET, POST, PATCH, PUT and DELETE http requests
 * ...and more
 ## Screens:
 ![Flutter Shopping Cart App Screens](https://i.imgur.com/jC9Rmdv.png)
