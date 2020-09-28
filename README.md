@@ -11,6 +11,8 @@
 * RESTful API
 * Flutter http library
 * GET, POST, PATCH, PUT and DELETE http requests
+* http error handling
+* Future and async/await
 * ...and more
 ## Screens:
 ![Flutter Shopping Cart App Screens](https://i.imgur.com/jC9Rmdv.png)
