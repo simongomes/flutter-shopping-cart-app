@@ -13,6 +13,7 @@
 * GET, POST, PATCH, PUT and DELETE http requests
 * http error handling
 * Future and async/await
+* Pull to refresh and fetch data from server
 * ...and more
 ## Screens:
 ![Flutter Shopping Cart App Screens](https://i.imgur.com/jC9Rmdv.png)
