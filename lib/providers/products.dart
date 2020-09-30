@@ -6,7 +6,7 @@ import '../data/dummy_products.dart';
 import './product.dart';
 
 class Products with ChangeNotifier {
-  List<Product> _items = DUMMY_PRODUCTS;
+  List<Product> _items = []; //DUMMY_PRODUCTS;
   
   var _showFavoritesOnly = false;
 
@@ -35,13 +35,39 @@ class Products with ChangeNotifier {
 //    notifyListeners();
 //  }
 
+  Future<void> fetchAndSetProduct() async {
+    const url = 'https://flutter-shop-app-b3619.firebaseio.com/products.json';
+    try {
+      final response = await http.get(url);
+      final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      final List<Product> loadedProducts = [];
+
+      extractedData.forEach((key, product) {
+        loadedProducts.add(Product(
+          id: key,
+          title: product['title'],
+          description: product['description'],
+          price: product["price"],
+          imageUrl: product['imageUrl'],
+          isFavorite: product['isFavorite'],
+        ));
+      });
+      _items = loadedProducts;
+      notifyListeners();
+
+    } catch (exception) {
+      throw exception;
+    }
+  }
+
   Future<void> addProduct(Product product) async {
-    const url = 'https://flutter-shop-app-b3619.firebaseio.com/products';
+    const url = 'https://flutter-shop-app-b3619.firebaseio.com/products.json';
     try {
       final response = await http.post(url, body: json.encode({
         'title': product.title,
         'description': product.description,
         'price': product.price,
+        'imageUrl': product.imageUrl,
         'isFavorite': product.isFavorite,
       }),);
 
