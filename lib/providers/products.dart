@@ -41,19 +41,20 @@ class Products with ChangeNotifier {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
       final List<Product> loadedProducts = [];
-
-      extractedData.forEach((key, product) {
-        loadedProducts.add(Product(
-          id: key,
-          title: product['title'],
-          description: product['description'],
-          price: product["price"],
-          imageUrl: product['imageUrl'],
-          isFavorite: product['isFavorite'],
-        ));
-      });
-      _items = loadedProducts;
-      notifyListeners();
+      if(extractedData != null) {
+        extractedData.forEach((key, product) {
+          loadedProducts.add(Product(
+            id: key,
+            title: product['title'],
+            description: product['description'],
+            price: product["price"],
+            imageUrl: product['imageUrl'],
+            isFavorite: product['isFavorite'],
+          ));
+        });
+        _items = loadedProducts;
+        notifyListeners();
+      }
 
     } catch (exception) {
       print("Simon: " + exception.toString());
