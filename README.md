@@ -14,6 +14,7 @@
 * http error handling
 * Future and async/await
 * Pull to refresh and fetch data from server
+* FutureBuilder
 * ...and more
 ## Screens:
 ![Flutter Shopping Cart App Screens](https://i.imgur.com/jC9Rmdv.png)
