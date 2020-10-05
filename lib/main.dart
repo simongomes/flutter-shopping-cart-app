@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shop_app/screens/products_overview_screen.dart';
 import 'package:provider/provider.dart';
 
 import './providers/auth.dart';
@@ -27,24 +28,26 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => Cart()),
         ChangeNotifierProvider(create: (_) => Orders(),)
       ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          primarySwatch: Colors.purple,
-          accentColor: Colors.deepOrange,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          fontFamily: 'Lato',
-        ),
-        home: AuthScreen(),
-        routes: {
-          ProductDetailScreen.routeName:  (_) => ProductDetailScreen(),
-          CartScreen.routeName:           (_) => CartScreen(),
-          OrdersScreen.routeName:         (_) => OrdersScreen(),
-          UserProductsScreen.routeName:   (_) => UserProductsScreen(),
-          EditProductScreen.routeName:    (_) => EditProductScreen(),
-        },
-      ),
+      child: Consumer<Auth>(builder: (ctx, auth, _) {
+        return MaterialApp(
+          title: 'MyShop',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primarySwatch: Colors.purple,
+            accentColor: Colors.deepOrange,
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+            fontFamily: 'Lato',
+          ),
+          home: auth.isAuth ? ProductsOverviewScreen() :AuthScreen(),
+          routes: {
+            ProductDetailScreen.routeName:  (_) => ProductDetailScreen(),
+            CartScreen.routeName:           (_) => CartScreen(),
+            OrdersScreen.routeName:         (_) => OrdersScreen(),
+            UserProductsScreen.routeName:   (_) => UserProductsScreen(),
+            EditProductScreen.routeName:    (_) => EditProductScreen(),
+          },
+        );
+      },),
     );
   }
 }
