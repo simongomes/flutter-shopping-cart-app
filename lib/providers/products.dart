@@ -6,6 +6,10 @@ import 'package:http/http.dart' as http;
 import './product.dart';
 
 class Products with ChangeNotifier {
+  final String authToken;
+
+  Products(this.authToken, this._items);
+
   List<Product> _items = []; //DUMMY_PRODUCTS;
   
   var _showFavoritesOnly = false;
@@ -36,7 +40,7 @@ class Products with ChangeNotifier {
 //  }
 
   Future<void> fetchAndSetProduct() async {
-    const url = 'https://flutter-shop-app-b3619.firebaseio.com/products.json';
+    final url = 'https://flutter-shop-app-b3619.firebaseio.com/products.json?auth=$authToken';
     try {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
@@ -63,7 +67,7 @@ class Products with ChangeNotifier {
   }
 
   Future<void> addProduct(Product product) async {
-    const url = 'https://flutter-shop-app-b3619.firebaseio.com/products.json';
+    final url = 'https://flutter-shop-app-b3619.firebaseio.com/products.json?auth=$authToken';
     try {
       final response = await http.post(url, body: json.encode({
         'title': product.title,
@@ -93,7 +97,7 @@ class Products with ChangeNotifier {
   Future<void> updateProduct(String id, Product newProduct) async {
     final productIndex = _items.indexWhere((product) => product.id == id);
     if(productIndex >= 0) {
-      final url = 'https://flutter-shop-app-b3619.firebaseio.com/products/$id.json';
+      final url = 'https://flutter-shop-app-b3619.firebaseio.com/products/$id.json?auth=$authToken';
       await http.patch(
           url,
         body: json.encode({
@@ -111,7 +115,7 @@ class Products with ChangeNotifier {
   }
 
   Future<void> deleteProduct(String id) async {
-    final url = 'https://flutter-shop-app-b3619.firebaseio.com/products/$id.json';
+    final url = 'https://flutter-shop-app-b3619.firebaseio.com/products/$id.json?auth=$authToken';
     final existingProductIndex = _items.indexWhere((product) => product.id == id);
     var existingProduct = _items[existingProductIndex];
     _items.removeAt(existingProductIndex);
