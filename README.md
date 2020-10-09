@@ -16,7 +16,9 @@
 * Pull to refresh and fetch data from server
 * FutureBuilder
 * Firebase User Authentication (Signup/Login)
+* Auto Login/Logout
+* Shared Preferences
 * ...and more
 ## Screens:
-![Flutter Shopping Cart App Screens](https://i.imgur.com/jC9Rmdv.png)
+![Flutter Shopping Cart App Screens](https://i.ibb.co/PCnwfg7/flutter-shopping-cart-app.png)
 
