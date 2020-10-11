@@ -18,6 +18,12 @@
 * Firebase User Authentication (Signup/Login)
 * Auto Login/Logout
 * Shared Preferences
+* Animations:
+  * AnimationBuilder,
+  * AnimatedContainer,
+  * Hero,
+  * Slivers,
+  * Custom Route Transition
 * ...and more
 ## Screens:
 ![Flutter Shopping Cart App Screens](https://i.ibb.co/PCnwfg7/flutter-shopping-cart-app.png)
